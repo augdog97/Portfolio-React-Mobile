@@ -18,10 +18,6 @@ build-App:
   services:
     - docker:dind
   script:
-    - echo   "REACT_APP_ServiceId=$REACT_APP_ServiceId" >> .env
-    - echo   "REACT_APP_TemplateId=$REACT_APP_TemplateId" >> .env
-    - echo   "REACT_APP_UserId=$REACT_APP_UserId" >> .env
-    - cat .env
     - docker build . -t $TAG_COMMIT -t $TAG_LATEST 
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker push $TAG_COMMIT
